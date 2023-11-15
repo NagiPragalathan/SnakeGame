@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game Input Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: rgb(227, 242, 253);
+        }
+        h1 {
+            text-align: center;
+            color: rgb(30, 40, 55);
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: rgb(30, 40, 55);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .quote {
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .image-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Snake Game</h1>
+    <form id="userInputForm" action="{% url 'usrinp' %}" method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <button type="submit">Submit</button>
+
+        <div class="quote">
+            <p>"Your snake journey begins with a single step."</p>
+        </div>
+        <button><a href="{%  url 'leaderboard' %}">GoTo Leaderboard</a></button>
+
+        <div class="high-score">
+            <h2>High Score :</h2>
+            <p id="lastHighScore">{{ score }}</p>
+            <h3>Name : </h3><h3>{{ obj }}</h3>
+        </div>
+
+        <div class="image-container">
+            <img src="https://play-lh.googleusercontent.com/uajFVocVtZSZuJcgwMNdt-29B8pFgN7Vbf1Lf6WxVcT-uicCIYSdHVr0osXB0Gera5U=w600-h300-pc0xffffff-pd" alt="Snake Image">
+        </div>
+    </form>
+</body>
+</html>
