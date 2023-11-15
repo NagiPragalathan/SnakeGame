@@ -73,6 +73,40 @@
             color: #fff;
             text-decoration: none;
         }
+        .high-score {
+            margin-top: 20px;
+            background-color: rgb(30, 40, 55);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        .high-score table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .high-score th, .high-score td {
+            border: 1px solid white;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .high-score th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .high-score h2 {
+            margin: 10px 0;
+        }
+
+        .high-score h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -100,9 +134,21 @@
         <button><a href="{%  url 'leaderboard' %}">GoTo Leaderboard</a></button>
 
         <div class="high-score">
-            <h2>High Score :</h2>
-            <p id="lastHighScore">{{ score }}</p>
-            <h3>Name : </h3><h3>{{ obj }}</h3>
+            <h2>High Score</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Score</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ score }}</td>
+                        <td>{{ obj }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div class="image-container">
