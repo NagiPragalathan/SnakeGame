@@ -47,9 +47,10 @@ def userinp(request):
         gender = request.POST.get('gender')
         if name and age:
             obj_usr = len(ScoreTable.objects.all())
+            print(obj_usr,obj_usr+1)
             # Create a new ScoreTable instance
             new_score = ScoreTable(
-                usr_id = obj_usr+1,
+                usr_id = obj_usr+2,
                 name=name,
                 age=age,
                 gender=gender,
