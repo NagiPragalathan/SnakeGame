@@ -78,7 +78,7 @@ def userinp(request):
 
 def leaderboard(request):
     # Query the top scores, order by score in descending order
-    top_scores = ScoreTable.objects.order_by('-score')[:10]  # Adjust the number as needed
+    top_scores = ScoreTable.objects.order_by('-score')  # Adjust the number as needed
 
     context = {'top_scores': top_scores}
     return render(request, 'leaderboard.html', context)
