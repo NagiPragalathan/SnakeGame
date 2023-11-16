@@ -4,6 +4,13 @@ from django.db.models import Max
 import csv
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.db import transaction
+import time
+import random 
+def generate_unique_usr_id():
+    timestamp = int(time.time())
+    random_number = random.randint(1, 1000)  # Adjust the range as needed
+    return int(f"{timestamp}{random_number}")
 
 def StartGame(request, id):
     print(id)
@@ -47,16 +54,17 @@ def userinp(request):
         gender = request.POST.get('gender')
         if name and age:
             obj_usr = len(ScoreTable.objects.all())
-            print(obj_usr,obj_usr+1)
+            print(obj_usr,obj_usr+1,obj_usr+1)
             # Create a new ScoreTable instance
-            new_score = ScoreTable(
-                usr_id = obj_usr+2,
-                name=name,
-                age=age,
-                gender=gender,
-                score=score,
-                timing=0
-            )
+            with transaction.atomic():
+                    new_score = ScoreTable(
+                        usr_id = generate_unique_usr_id(),
+                        name=name,
+                        age=age,
+                        gender=gender,
+                        score=score,
+                        timing=0
+                    )
 
             # Save the instance to the database
             new_score.save()
